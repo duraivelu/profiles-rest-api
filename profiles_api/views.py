@@ -24,8 +24,9 @@ class HelloApiView(APIView):
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
-            name = serializer.validated_data.get('name')
-            message = f'Hello {name}'
+            first_name = serializer.validated_data.get('first_name')
+            last_name = serializer.validated_data.get('last_name')
+            message = f'Hello {first_name} {last_name}'
             return Response({'message': message})
         else:
             return Response(
